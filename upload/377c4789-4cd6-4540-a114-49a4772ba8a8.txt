@@ -1,0 +1,9 @@
+Java Treeview—extensible visualization of microarray data
+
+Open source software encourages innovation by allowing users to extend the functionality of existing applications. 
+Treeview is a popular application for the visualization of microarray data, but is closed-source and platform-specific, 
+which limits both its current utility and suitability as a platform for further development. 
+Java Treeview is an open-source, cross-platform rewrite that handles very large datasets well, 
+and supports extensions to the file format that allow the results of additional analysis to be visualized and compared. 
+The combination of a general file format and open source makes Java Treeview an attractive choice for solving a class of visualization problems. 
+An applet version is also available that can be used on any website with no special server-side

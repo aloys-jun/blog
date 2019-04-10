@@ -1,0 +1,5 @@
+Near Shannon limit error-correcting coding and decoding: Turbo-codes. 1
+
+A new class of convolutional codes called turbo-codes, whose performances in terms of bit error rate (BER) are close to the Shannon limit, 
+is discussed. The turbo-code encoder is built using a parallel concatenation of two recursive systematic convolutional codes, 
+and the associated decoder, using a feedback decoding rule, is implemented as P pipelined identical elementary decoders.>

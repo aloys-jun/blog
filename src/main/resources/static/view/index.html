@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小俊博客搜索</title>
+    <script src="../js/jquery.js"></script>
+    <style type="text/css">
+        input.text{text-align:center;padding:10px 20px;width:300px;}
+    </style>
+</head>
+
+<body>
+<div align="right"><a href="writeBlog.html">写博客</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="upload.html">上传文件</a></div>
+<div align="center"><h1 style="font-family: Consolas; color: darkseagreen">小俊博客搜索</h1></div>
+<div align="center">
+<input type="text" id="searchText" class="text"><input type="button" id="search" value="搜索" style="padding:10px 20px;">
+</div>
+<br><br><br>
+<div align="center">
+查询结果：<input type="text" id="total" readonly="readonly">条记录
+<br><br>
+<!--<textarea style="height: 500px; width: 1200px" id="textarea" readonly="readonly"></textarea>-->
+
+    <div id="result"></div>
+</div>
+<script>
+    $(function () {
+        $("#search").on("click",function () {
+            var query = $("#searchText").val();
+
+            $.ajax({
+                url: "/search",
+                type: "post",
+                contentType: "application/json;charset=UTF-8",
+                data:JSON.stringify({"query": query}),
+                dataType: "json",
+                success: function (data) {
+                    $("#total").val(data.total);
+                    $("#result").empty();
+
+                    if (data.total == 0) {
+                        //$("#textarea").text("未搜到结果，请重新确定关键字");
+                        $("#result").html("未搜到结果，请重新确定关键字");
+                    }else {
+                        //$("#textarea").text("");
+                        $.each(data.doc,function (i,n) {
+                            // $("#textarea").append(n.title).append("\r\n").append("--------")
+                            //     .append("\r\n").append(n.content).append("\r\n").append("##########");
+                            var div = document.createElement("div");
+                            div.innerHTML = n.title + "<br>" + n.content + "<br><hr><br><br><br>";
+                            $("#result").append(div);
+                        });
+                    }
+                },
+                error: function () {
+                    alert("搜索失败！");
+                }
+
+            });
+
+        });
+    });
+
+</script>
+</body>
+
+</html>

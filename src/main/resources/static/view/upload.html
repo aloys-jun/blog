@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小俊博客搜索</title>
+    <script src="../js/jquery.js"></script>
+</head>
+<body>
+<div align="center">
+<input type="file" id="upload" accept=".txt">
+<label>标题：</label><input type="text" id="title">
+<input type="button" id="uploadButton" value="上传">
+</div>
+<script>
+    $(function () {
+        $("#uploadButton").on("click",function () {
+
+            var dataForm = new FormData();
+            dataForm.append("file",document.getElementById("upload").files[0]);
+            dataForm.append("title",$("#title").val());
+            $.ajax({
+                url:"/upload",
+                type:"post",
+                data:dataForm,
+                contentType: false,
+                processData: false,
+                success:function (data) {
+                    if (data == "ok"){
+                        alert("上传成功");
+                    }
+                },
+                error:function () {
+                    alert("上传失败！");
+                }
+
+            });
+
+        });
+    });
+
+</script>
+
+</body>
+</html>
